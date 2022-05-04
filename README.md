@@ -5,7 +5,8 @@ MDX Player mxp for Mac OS
 ターミナルから、X68000 MDX形式のファイルを再生できるシンプルなプレイヤーです。
 
 run68macと併用することでMac上でのMDXファイルのコンパイルやデコンパイル、エディットした際にMDXを再生をするためにつくりました。
-https://github.com/GOROman/run68mac
+
+- https://github.com/GOROman/run68mac
 
 ## 使い方
 
@@ -14,6 +15,16 @@ $ mxp bos14.mdx
 ```
 
 ## オプション
+
+```
+Usage:
+	./mxp [Options] <MDX Filename>
+Option:
+	-d <seconds>
+		Specify the maximum playback length in seconds.
+		0 means infinite.
+```
+
 
 ## ビルド方法
 
@@ -37,8 +48,9 @@ $ make
 ## 謝辞
 
 以下のライブラリを使わせていただきました。ありがとうございます。
-Portable mdx decoder
-https://github.com/yosshin4004/portable_mdx
+
+- Portable mdx decoder
+- https://github.com/yosshin4004/portable_mdx
 
 ```
 X68k MXDRV music driver version 2.06+17 Rel.X5-S
@@ -53,4 +65,10 @@ X68Sound_src020615
 Ported for 64bit environments
 	Copyright (C) 2018 Yosshin.
 ```
+
+## ライセンス
+
+Portable mdx decoder のライセンスに準じます
+- https://github.com/yosshin4004/portable_mdx
+
 
