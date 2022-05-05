@@ -17,14 +17,14 @@ struct MXPOPTION {
 		int o;
 		while ((o = getopt(argc, argv, "vd:")) != -1) {
 			switch(o) {
-				case 'v':	verbose = 1;							break;
-				case 'd':	duration = strtof(optarg, NULL);		break;
+				case 'v':	verbose = 1;                       break;
+				case 'd':	duration = strtof(optarg, NULL);   break;
 				default:
 					usage();
 					return false;
 			}
 		}
-		
+
 		mdxFilePath = argv[optind];
 
 		return true;
@@ -69,7 +69,7 @@ struct MXPOPTION {
 
 int main( int argc, char **argv )
 {
-	MXPOPTION		opt;
+    MXPOPTION		opt;
     MDXPlayer       mdx;
         
 	printf("X68k MXDRV music driver version 2.06+17 Rel.X5-S (c)1988-92 milk.,K.MAEKAWA, Missy.M, Yatsube\n");
