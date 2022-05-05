@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(mxp CXX)
+project(mxp CXX C)
 
 
 #-----------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ add_git_submodule(portaudio)
 
 set(SRC
     src/mxp.cpp
-    portable_mdx/src/mdx_util.cpp
+    portable_mdx/src/mdx_util.c
     portable_mdx/src/mxdrv/mxdrv.cpp
     portable_mdx/src/mxdrv/mxdrv_context.cpp
     portable_mdx/src/mxdrv/sound_iocs.cpp

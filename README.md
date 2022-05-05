@@ -4,14 +4,12 @@ MDX Player mxp for Mac OS
 
 ターミナルから、X68000 MDX形式のファイルを再生できるシンプルなプレイヤーです。
 
-run68macと併用することでMac上でのMDXファイルのコンパイルやデコンパイル、エディットした際にMDXを再生をするためにつくりました。
-
-- https://github.com/GOROman/run68mac
+[run68mac](https://github.com/GOROman/run68mac)と併用することでMac上でのMDXファイルのコンパイルやデコンパイル、エディットした際にMDXを再生をするためにつくりました。
 
 ## 使い方
 
 ```
-$ mxp bos14.mdx
+$ ./mxp bos14.mdx
 ```
 
 ## オプション
@@ -33,8 +31,7 @@ CMakeを使用しています。brewなどであらかじめインストール�
 $ brew install cmake
 ```
 
-また、サブモジュールとして PortAudio を使用しているので、git clone時に --recurse-submodules オプションを指定してください。
-(もしくは、clone後に git submodule update --init を行ってください)
+また、サブモジュールとして [PortAudio] と [portable_mdx](https://github.com/yosshin4004/portable_mdx) を使用しているので、git clone時に --recurse-submodules オプションを指定してください。(なければcmakeが自動で追加します)
 
 ```
 $ git clone --recurse-submodules https://github.com/GOROman/mxp-mac.git
@@ -49,7 +46,7 @@ $ make
 
 以下のライブラリを使わせていただきました。ありがとうございます。
 
-- Portable mdx decoder
+Portable mdx decoder
 - https://github.com/yosshin4004/portable_mdx
 
 ```
@@ -68,7 +65,6 @@ Ported for 64bit environments
 
 ## ライセンス
 
-Portable mdx decoder のライセンスに準じます
-- https://github.com/yosshin4004/portable_mdx
+[Portable mdx decoder](https://github.com/yosshin4004/portable_mdx) のライセンスに準じます
 
 

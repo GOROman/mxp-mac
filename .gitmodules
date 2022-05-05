@@ -1,3 +1,6 @@
 [submodule "portaudio"]
 	path = portaudio
 	url = https://github.com/PortAudio/portaudio.git
+[submodule "portable_mdx"]
+	path = portable_mdx
+	url = https://github.com/yosshin4004/portable_mdx.git
