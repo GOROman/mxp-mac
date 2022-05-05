@@ -31,7 +31,7 @@ CMakeを使用しています。brewなどであらかじめインストール�
 $ brew install cmake
 ```
 
-また、サブモジュールとして [PortAudio] と [portable_mdx](https://github.com/yosshin4004/portable_mdx) を使用しているので、git clone時に --recurse-submodules オプションを指定してください。(なければcmakeが自動で追加します)
+また、サブモジュールとして [PortAudio](https://github.com/PortAudio/portaudio) と [portable_mdx](https://github.com/yosshin4004/portable_mdx) を使用しているので、git clone時に --recurse-submodules オプションを指定してください。(なければcmakeが自動で追加します)
 
 ```
 $ git clone --recurse-submodules https://github.com/GOROman/mxp-mac.git
