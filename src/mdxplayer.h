@@ -1,6 +1,7 @@
 #pragma once
 
 #include <math.h>
+#include <float.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -17,6 +18,28 @@
 #include <mxdrv_context.h>
 
 #include "mdxconfig.h"
+
+class ScopedPaHandler
+{
+public:
+    ScopedPaHandler() : _result(Pa_Initialize()) {
+    }
+
+    ~ScopedPaHandler() {
+        if (_result == paNoError) {
+            Pa_Terminate();
+        }
+    }
+
+    PaError result() const { 
+        return _result; 
+    }
+
+private:
+    PaError _result;
+};
+
+
 
 // メモリ確保した領域にファイルを読み込む
 static void *mallocReadFile(
@@ -55,6 +78,7 @@ class MDXPlayer
 
     char mdxTitle[256];
 
+    ScopedPaHandler paInit;
     PaStream* stream;
 
 
@@ -79,6 +103,11 @@ public:
 
     bool open(PaDeviceIndex index)
     {
+        if( paInit.result() != paNoError ) {
+            printf("Error:paInit\n");
+		    return false;
+        }
+
         PaStreamParameters outputParameters;
 
         outputParameters.device = index;
@@ -427,25 +456,5 @@ private:
         return ((MDXPlayer*)userData)->paStreamFinishedMethod();
     }
 
-};
-
-class ScopedPaHandler
-{
-public:
-    ScopedPaHandler() : _result(Pa_Initialize()) {
-    }
-
-    ~ScopedPaHandler() {
-        if (_result == paNoError) {
-            Pa_Terminate();
-        }
-    }
-
-    PaError result() const { 
-        return _result; 
-    }
-
-private:
-    PaError _result;
 };
 
