@@ -1,5 +1,7 @@
 # mxp-mac
 
+[![CMake](https://github.com/GOROman/mxp-mac/actions/workflows/cmake.yml/badge.svg)](https://github.com/GOROman/mxp-mac/actions/workflows/cmake.yml)
+
 MDX Player mxp for Mac OS
 
 ターミナルから、X68000 MDX形式のファイルを再生できるシンプルなプレイヤーです。
