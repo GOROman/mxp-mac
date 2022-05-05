@@ -34,7 +34,7 @@ $ brew install cmake
 ```
 
 また、サブモジュールとして PortAudio を使用しているので、git clone時に --recurse-submodules オプションを指定してください。
-(もしくは、clone後に git submodule update を行ってください)
+(もしくは、clone後に git submodule update --init を行ってください)
 
 ```
 $ git clone --recurse-submodules https://github.com/GOROman/mxp-mac.git
