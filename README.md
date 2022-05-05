@@ -11,14 +11,14 @@ MDX Player mxp for Mac OS
 ## 使い方
 
 ```
-$ ./mxp bos14.mdx
+$ mxp bos14.mdx
 ```
 
 ## オプション
 
 ```
 Usage:
-	./mxp [Options] <MDX Filename>
+	mxp [Options] <MDX Filename>
 Option:
 	-d <seconds>
 		Specify the maximum playback length in seconds.
@@ -42,6 +42,7 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
+$ make install
 ```
 
 ## 謝辞
