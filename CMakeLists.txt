@@ -1,24 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 project(mxp CXX C)
 
-
-#-----------------------------------------------------------------------------------------
-function(add_git_submodule dir)
-message("add git submodule:${dir}")
-find_package(Git REQUIRED)
-
-if(NOT EXISTS ${dir})
-  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive -- ${dir}
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-    COMMAND_ERROR_IS_FATAL ANY)
-endif()
-
-endfunction(add_git_submodule)
-#-----------------------------------------------------------------------------------------
-
-add_git_submodule(portaudio)
-add_git_submodule(portable_mdx)
-
 add_subdirectory(portaudio)
 
 set(SRC
