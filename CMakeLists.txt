@@ -27,7 +27,12 @@ include_directories(
 )
 
 add_executable(mxp ${SRC})
-target_link_libraries(mxp PortAudio iconv)
+set(LIBS PortAudio)
+if(APPLE)
+  set(LIBS ${LIBS} iconv)
+endif()
+
+target_link_libraries(mxp ${LIBS})
 target_compile_features(mxp PUBLIC cxx_std_11)
 
 INSTALL(TARGETS mxp RUNTIME DESTINATION bin)
