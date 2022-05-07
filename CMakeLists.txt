@@ -5,6 +5,9 @@ add_subdirectory(portaudio)
 
 set(SRC
     src/mxp.cpp
+    src/mdxconfig.h
+    src/mdxplayer.h
+    src/mdxplayer.cpp
     portable_mdx/src/mdx_util.c
     portable_mdx/src/mxdrv/mxdrv.cpp
     portable_mdx/src/mxdrv/mxdrv_context.cpp
