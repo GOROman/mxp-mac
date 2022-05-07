@@ -28,9 +28,10 @@ Option:
 
 ## ビルド方法
 
-CMakeを使用しています。brewなどであらかじめインストールをしておいてください。
+CMake および libiconv を使用しています。brewなどであらかじめインストールをしておいてください。
 ```
 $ brew install cmake
+$ brew install libiconv
 ```
 
 また、サブモジュールとして [PortAudio](https://github.com/PortAudio/portaudio) と [portable_mdx](https://github.com/yosshin4004/portable_mdx) を使用しているので、git clone時に --recurse-submodules オプションを指定してください。
