@@ -35,6 +35,7 @@ $ brew install cmake
 
 また、サブモジュールとして [PortAudio](https://github.com/PortAudio/portaudio) と [portable_mdx](https://github.com/yosshin4004/portable_mdx) を使用しているので、git clone時に --recurse-submodules オプションを指定してください。
 
+漢字コード変換にiconvを使用しています。
 ```
 $ git clone --recurse-submodules https://github.com/GOROman/mxp-mac.git
 $ cd mxp-mac

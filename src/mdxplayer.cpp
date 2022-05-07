@@ -8,6 +8,8 @@
 #include <libgen.h> // for dirname()
 #include <unistd.h>
 
+#include <iconv.h>
+
 #include "mdxplayer.h"
 
 #define MDX_BUFFER_SIZE 1 * 1024 * 1024
@@ -140,15 +142,7 @@ bool MDXPlayer::load(char *mdxFilePath)
             return false;
         }
 
-        // MDX タイトルの取得
-        if (
-            MdxGetTitle(
-                mdxFileImage, mdxFileImageSizeInBytes,
-                mdxTitle, sizeof(mdxTitle)) == false)
-        {
-            printf("MdxGetTitle failed.\n");
-            return false;
-        }
+        getTitle(mdxFileImage, mdxFileImageSizeInBytes);
         printf("TITLE:%s\n", mdxTitle);
 
         // PDX ファイルを要求するか？
@@ -326,7 +320,9 @@ bool MDXPlayer::load(char *mdxFilePath)
 bool MDXPlayer::close()
 {
     if (stream == 0)
+    {
         return false;
+    }
 
     PaError err = Pa_CloseStream(stream);
     stream = 0;
@@ -385,9 +381,9 @@ bool MDXPlayer::fadeout()
 }
 
 int MDXPlayer::paCallbackMethod(const void *inputBuffer, void *outputBuffer,
-                     unsigned long framesPerBuffer,
-                     const PaStreamCallbackTimeInfo *timeInfo,
-                     PaStreamCallbackFlags statusFlags)
+                                unsigned long framesPerBuffer,
+                                const PaStreamCallbackTimeInfo *timeInfo,
+                                PaStreamCallbackFlags statusFlags)
 {
 
     (void)timeInfo; // Prevent unused variable warnings.
@@ -403,10 +399,10 @@ int MDXPlayer::paCallbackMethod(const void *inputBuffer, void *outputBuffer,
 // It may called at interrupt level on some machines so don't do anything
 // that could mess up the system like calling malloc() or free().
 int MDXPlayer::paCallback(const void *inputBuffer, void *outputBuffer,
-                      unsigned long framesPerBuffer,
-                      const PaStreamCallbackTimeInfo *timeInfo,
-                      PaStreamCallbackFlags statusFlags,
-                      void *userData)
+                          unsigned long framesPerBuffer,
+                          const PaStreamCallbackTimeInfo *timeInfo,
+                          PaStreamCallbackFlags statusFlags,
+                          void *userData)
 {
     // Here we cast userData to MDXPlayer* type so we can call the instance method paCallbackMethod, we can do that since
     //   we called Pa_OpenStream with 'this' for userData
@@ -423,4 +419,29 @@ void MDXPlayer::paStreamFinishedMethod()
 void MDXPlayer::paStreamFinished(void *userData)
 {
     return ((MDXPlayer *)userData)->paStreamFinishedMethod();
+}
+
+bool MDXPlayer::getTitle(void* mdxFileImage, int mdxFileImageSizeInBytes)
+{
+    char buf[256];
+
+    if (MdxGetTitle(
+            mdxFileImage, mdxFileImageSizeInBytes,
+            buf, sizeof(buf)) == false)
+    {
+        printf("MdxGetTitle failed.\n");
+        return false;
+    }
+
+    // SJIS to UTF-8
+    iconv_t icd;
+    icd = iconv_open("UTF-8", "Shift_JIS");
+    size_t inbytes = strlen(buf);
+    size_t outbytes = sizeof(mdxTitle) - 1;
+    char *ptr_in = buf;
+    char *ptr_out = mdxTitle;
+    memset(mdxTitle, 0x00, sizeof(mdxTitle));
+    iconv(icd, &ptr_in, &inbytes, &ptr_out, &outbytes);
+    iconv_close(icd);
+    return true;
 }
